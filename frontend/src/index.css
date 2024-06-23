@@ -35,6 +35,14 @@ h1 {
   line-height: 1.1;
 }
 
+input, button, label {
+  margin-top: 10px;
+}
+
+.labelText {
+  color: black;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

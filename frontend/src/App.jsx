@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import ContactList from "./ContactList";
-import ContactForm from "./ContactForm";
 import "./App.css";
+import ContactForm from "./ContactForm";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -9,15 +9,13 @@ function App() {
   const [currentContact, setCurrentContact] = useState({})
 
   useEffect(() => {
-    fetchContacts();
+    fetchContacts()
   }, []);
 
   const fetchContacts = async () => {
-    // Send HTTP Get request to get json data
     const response = await fetch("http://127.0.0.1:5000/contacts");
     const data = await response.json();
     setContacts(data.contacts);
-    console.log(data.contacts);
   };
 
   const closeModal = () => {
@@ -42,12 +40,12 @@ function App() {
 
   return (
     <>
-      <ContactList contacts={contacts} updateContact={openEditModal} updateCallBack={onUpdate}/>
+      <ContactList contacts={contacts} updateContact={openEditModal} updateCallback={onUpdate} />
       <button onClick={openCreateModal}>Create New Contact</button>
-      { isModalOpen && <div className="modal">
+      {isModalOpen && <div className="modal">
         <div className="modal-content">
           <span className="close" onClick={closeModal}>&times;</span>
-          <ContactForm existingContact={currentContact} updateCallBack={onUpdate}/>
+          <ContactForm existingContact={currentContact} updateCallback={onUpdate} />
         </div>
       </div>
       }
